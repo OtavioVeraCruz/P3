@@ -2,8 +2,11 @@ package br.ufpe.cin.if1001.rss;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -35,6 +38,7 @@ public class MainActivity extends Activity {
     //use ListView ao invés de TextView - deixe o atributo com o mesmo nome
     private ListView conteudoRSS;
     private List<ItemRSS> aux;
+    SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +58,8 @@ public class MainActivity extends Activity {
     @Override
     protected void onStart() {
         super.onStart();
+        sharedPreferences=getPreferences(MODE_PRIVATE);
+        String rssfeed=sharedPreferences.getString("@string/rss_feed_default","");
         new CarregaRSStask().execute(RSS_FEED);
     }
 
@@ -116,5 +122,24 @@ public class MainActivity extends Activity {
         Intent intent=new Intent(this,WebActivity.class);
         intent.putExtra("link",link);
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_preference, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.editar:
+                //Toast.makeText(this, "ADD!", Toast.LENGTH_SHORT).show();
+                Intent i = new Intent(this, PreferenciasActivity.class);
+                startActivity(i);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
