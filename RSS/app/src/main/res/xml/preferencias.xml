@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-<EditTextPreference
-    android:title="Alterar feed"
-    android:key="@string/rss_feed_default"
-    ></EditTextPreference>
+    <EditTextPreference
+        android:title="Alterar Feed"
+        android:key="rss_feed_default" />
 </PreferenceScreen>

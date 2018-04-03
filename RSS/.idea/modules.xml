@@ -3,9 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/RSS.iml" filepath="$PROJECT_DIR$/RSS.iml" />
-      <module fileurl="file://F:\p3\P3\RSS\RSS.iml" filepath="F:\p3\P3\RSS\RSS.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://F:\p3\P3\RSS\app\app.iml" filepath="F:\p3\P3\RSS\app\app.iml" />
     </modules>
   </component>
 </project>

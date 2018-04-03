@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -38,7 +39,8 @@ public class MainActivity extends Activity {
     //use ListView ao invés de TextView - deixe o atributo com o mesmo nome
     private ListView conteudoRSS;
     private List<ItemRSS> aux;
-    SharedPreferences sharedPreferences;
+    private SharedPreferences sharedPreferences;
+    public static String rss_feed;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,14 +55,16 @@ public class MainActivity extends Activity {
                 openRss(link);
             }
         });
+        rss_feed=getResources().getString(R.string.rss_feed_default);
+
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        sharedPreferences=getPreferences(MODE_PRIVATE);
-        String rssfeed=sharedPreferences.getString("@string/rss_feed_default","");
-        new CarregaRSStask().execute(RSS_FEED);
+        sharedPreferences= PreferenceManager.getDefaultSharedPreferences(this);
+        String test=sharedPreferences.getString("rss_feed_default",rss_feed);
+        new CarregaRSStask().execute(test);
     }
 
     private class CarregaRSStask extends AsyncTask<String, Void, List<ItemRSS>> {
